@@ -1,0 +1,99 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    width: 45%;
+    max-width: 500px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input, select {
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.result {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.order-status {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    width: 45%;
+    max-width: 500px;
+}
+
+.order-list {
+    margin-top: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.order-list p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.delete-button {
+    color: red;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.delete-button:hover {
+    text-decoration: underline;
+}
+
+.order-status .total {
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 20px;
+}

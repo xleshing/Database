@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>簡單互動體驗</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #display {
+            font-size: 2em;
+            margin-bottom: 20px;
+            height: 50px;
+            line-height: 50px;
+            border: 2px solid #333;
+            display: inline-block;
+            width: 100px;
+        }
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        .number-button {
+            width: 60px;
+            height: 60px;
+            margin: 5px;
+            font-size: 1.5em;
+            cursor: pointer;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .number-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="display">0</div>
+
+    <div class="button-container">
+        <!-- 生成0~9的按鍵 -->
+        <button class="number-button">0</button>
+        <button class="number-button">1</button>
+        <button class="number-button">2</button>
+        <button class="number-button">3</button>
+        <button class="number-button">4</button>
+        <button class="number-button">5</button>
+        <button class="number-button">6</button>
+        <button class="number-button">7</button>
+        <button class="number-button">8</button>
+        <button class="number-button">9</button>
+    </div>
+
+    <script>
+        // 獲取所有按鍵
+        const buttons = document.querySelectorAll('.number-button');
+        const display = document.getElementById('display');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                // 取得按鍵的數值
+                let number = parseInt(button.textContent);
+                // 計算加1後的值
+                let result = number + 1;
+                // 顯示結果
+                display.textContent = result;
+            });
+        });
+    </script>
+
+</body>
+</html>

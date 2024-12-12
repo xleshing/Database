@@ -1,0 +1,302 @@
+/* 基本樣式 */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  background-color: #f4f4f4;
+}
+
+.sidebar {
+  width: 200px;
+  background: #333;
+  color: white;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.sidebar h2 {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 18px;
+}
+
+.sidebar button {
+  background: none;
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  text-align: left;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  transition: background 0.3s;
+}
+
+.sidebar button:hover {
+  background: #575757;
+}
+
+.content {
+  margin-left: 200px;
+  padding: 20px;
+  flex-grow: 1;
+  background: white;
+  min-height: 100vh;
+}
+
+.hidden {
+  display: none;
+}
+
+/* 表格樣式 */
+table {
+  margin: 20px auto;
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 1200px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 6px 10px;
+  text-align: center;
+  font-size: 14px;
+  vertical-align: top;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+img {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+/* 按鈕區域樣式 */
+.action-buttons {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.action-buttons button.operation-btn,
+.action-buttons button.print-btn,
+.action-buttons button.sort-btn {
+  padding: 8px 12px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  border: 1px solid #007bff;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, background-color 0.3s, border-color 0.3s;
+}
+
+.action-buttons button.operation-btn:hover,
+.action-buttons button.print-btn:hover,
+.action-buttons button.sort-btn:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.action-buttons button.operation-btn:active,
+.action-buttons button.print-btn:active,
+.action-buttons button.sort-btn:active {
+  transform: scale(0.95);
+}
+
+.action-buttons button.print-btn {
+  border: 1px solid #28a745;
+  background-color: #28a745;
+}
+
+.action-buttons button.print-btn:hover {
+  background-color: #1e7e34;
+  border-color: #1e7e34;
+}
+
+.action-buttons button.sort-btn {
+  border: 1px solid #6e41e9;
+  background-color: #6e41e9;
+}
+
+.action-buttons button.sort-btn:hover {
+  background-color: #442088;
+  border-color: #442088;
+}
+
+/* Modal樣式 */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto; /* 5% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 90%; /* Could be more or less, depending on screen size */
+  max-width: 600px;
+  border-radius: 5px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 表單樣式 */
+.modal form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal label {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.modal input, .modal select, .modal textarea {
+  padding: 8px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.modal input:focus, .modal select:focus, .modal textarea:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+  outline: none;
+}
+
+.modal textarea {
+  resize: vertical;
+}
+
+.modal button.submit-btn {
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #17a2b8;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.modal button.submit-btn:hover {
+  background-color: #138496;
+}
+
+button:disabled, input:disabled, select:disabled, textarea:disabled {
+  background-color: #e9ecef;
+  color: #6c757d;
+  cursor: not-allowed;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  th, td {
+    text-align: left;
+    padding: 10px;
+  }
+  .sidebar {
+    width: 150px;
+  }
+  .sidebar button {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+}
+
+/* 選中行的樣式 */
+tr.selected {
+  background-color: #d1e7dd;
+  border: 2px solid #0f5132;
+  font-weight: bold;
+}
+
+/* 加載動畫 */
+.loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #007bff;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+  z-index: 10;
+}
+
+@keyframes spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.transaction-total-container {
+  display: flex;
+  flex-direction: column; /* 垂直排列 */
+  align-items: flex-start; /* 左對齊 */
+  font-weight: bold;
+  padding: 10px;
+  background-color: #f9f9f9; /* 淺灰色背景 */
+  border: 1px solid #ddd; /* 邊框 */
+  border-radius: 5px; /* 圓角 */
+  max-width: 200px; /* 限制寬度 */
+}
+
+.transaction-item {
+  margin-bottom: 5px; /* 每個項目間距 */
+  font-size: 16px; /* 調整字體大小 */
+}
+
+.transaction-total-container span {
+  color: #007bff; /* 使用藍色強調文字 */
+}

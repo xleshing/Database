@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水果查詢與購買</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            width: 45%;
+            max-width: 500px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        input, select {
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .order-status {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            width: 45%;
+            max-width: 500px;
+        }
+
+        .order-list {
+            margin-top: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .order-list p {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+
+        .delete-button {
+            color: red;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .delete-button:hover {
+            text-decoration: underline;
+        }
+
+        .order-status .total {
+            font-weight: bold;
+            font-size: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>水果查詢與購買</h2>
+        <p>請選擇水果並輸入購買數量：</p>
+
+        <!-- 水果選擇與購買數量輸入框對齊 -->
+        <div class="form-group">
+            <label for="fruit-select">選擇水果(標準售價)：</label>
+            <select id="fruit-select">
+                <option value="">選擇水果</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="purchase-quantity">購買數量：</label>
+            <input type="text" id="purchase-quantity" placeholder="購買數量" oninput="validateNumericInput(this)" maxlength="5">
+        </div>
+
+        <div class="form-group">
+            <label for="delivery-date">預計交運日期：</label>
+            <input type="date" id="delivery-date">
+        </div>
+
+        <div class="form-group">
+            <label for="purchase-price">購買價格（必須高於標準售價）：</label>
+            <input type="text" id="purchase-price" placeholder="輸入購買價格" oninput="validateNumericInput(this)" maxlength="7">
+        </div>
+
+        <div class="form-group">
+            <button onclick="purchaseFruit()">下單</button>
+        </div>  
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <div class="order-status">
+        <h2>訂單狀況</h2>
+        <!-- <p>總金額：<span id="total-amount" class="total">0</span> 元</p> -->
+
+        <div class="order-list" id="order-list"></div>
+    </div>
+<!-- 
+    <script>
+        
+    </script> -->
+    <script src="script.js"></script>
+</body>
+</html>

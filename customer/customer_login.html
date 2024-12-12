@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>帳號登入與創建</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .container {
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+        input, label {
+            margin: 5px;
+            padding: 10px;
+        }
+        input[type="text"], input[type="password"], input[type="email"], input[type="number"] {
+            width: 200px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 登入介面 -->
+    <div id="login-container" class="container active">
+        <h2>登入</h2>
+        <input type="text" id="login-username" placeholder="帳號" required><br>
+        <input type="password" id="login-password" placeholder="密碼" required><br>
+        <input type="text" id="login-id" placeholder="會員身份證字號" required><br>
+        <button onclick="login()">登入</button>
+        <p>沒有帳號？<a href="#" onclick="showCreateAccount()">創建帳號</a></p>
+    </div>
+
+    <!-- 創建帳號介面 -->
+    <div id="create-account-container" class="container">
+        <h2>創建帳號</h2>
+        <input type="text" id="create-username" placeholder="輸入帳號(必填)"  required><br>
+        <input type="password" id="create-password" placeholder="輸入密碼(必填)" required><br>
+        <input type="text" id="create-id" placeholder="會員身份證字號(必填)" pattern="[A-Z]{1}\\d{9}" required><br>
+        <input type="text" id="create-name" placeholder="會員姓名(必填)" maxlength="12" required><br>
+        <input type="text" id="create-phone" placeholder="電話(選填)" pattern="\\d{2}\\d{4}\\d{4}"><br>
+        <input type="text" id="create-mobile" placeholder="手機號碼(選填)" pattern="\\d{4}\\d{3}\\d{3}"><br>
+        <input type="email" id="create-email" placeholder="Email(必填)" required><br>
+        <input type="text" id="create-address" placeholder="住址(選填)" maxlength="60"><br>
+        <input type="number" id="create-age" placeholder="年齡(選填)" min="0" max="9999"><br>
+        <div>
+            <p>是否加入 Line(選填)：</p>
+            <label><input type="radio" name="line-opt-in" value="是"> 是</label>
+            <label><input type="radio" name="line-opt-in" value="不是"> 否</label>
+        </div>
+        <div>
+            <p>上傳照片(選填)：</p>
+            <input type="file" id="create-photo" accept="image/*">
+        </div>
+        <button onclick="createAccount()">創建</button>
+        <p>已經有帳號？<a href="#" onclick="showLogin()">返回登入</a></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

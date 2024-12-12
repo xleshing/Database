@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>員工登入</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 350px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        input[type="text"], input[type="password"] {
+            width: 75%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+        input[type="text"]:focus, input[type="password"]:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+        button {
+            padding: 12px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 82.5%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        #loading {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>員工登入</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="帳號" required><br>
+            <input type="password" id="password" placeholder="密碼" required><br>
+            <button type="submit">登入</button>
+        </form>
+        <p id="errorMessage" class="error"></p>
+        <div id="loading" style="display: none;">登入中...</div>
+    </div>
+
+    <!-- <script>
+    </script> -->
+    <script src="script.js"></script>
+</body>
+</html>

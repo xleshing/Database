@@ -1,0 +1,30 @@
+<!-- page2.html -->
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>頁面 2</title>
+  <script>
+    // 當頁面載入時，從 localStorage 讀取資料並顯示
+    window.onload = function() {
+      const storedValue = localStorage.getItem('sharedData');
+      const display = document.getElementById('display');
+      if (storedValue) {
+        display.innerText = `從 localStorage 讀取的值: ${storedValue}`;
+      } else {
+        display.innerText = 'localStorage 中沒有找到資料。';
+      }
+    };
+
+    // 導航回 page1.html
+    function navigateToPage1() {
+      window.location.href = 'page1.html';
+    }
+  </script>
+</head>
+<body>
+  <h1>頁面 2</h1>
+  <p id="display">正在載入資料...</p>
+  <button onclick="navigateToPage1()">返回頁面 1</button>
+</body>
+</html>

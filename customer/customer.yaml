@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: customer
+  template:
+    metadata:
+      labels:
+        app: customer
+    spec:
+      containers:
+      - name: customer
+        image: ycair/afaifaifai-frontend # 替換為你構建的前端 Docker 映像名稱
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: /usr/share/nginx/html
+          name: customer-volume
+        - name: customer-nginx-config-volume
+          mountPath: /etc/nginx/conf.d
+      volumes:
+        - name: customer-nginx-config-volume
+          configMap:
+            name: customer-nginx-config
+        - name: customer-volume
+          persistentVolumeClaim:
+            claimName: customer-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: customer
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: customer
+

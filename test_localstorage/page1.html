@@ -1,0 +1,42 @@
+<!-- page1.html -->
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>頁面 1</title>
+  <script>
+    // 當頁面載入時，檢查 localStorage 中是否有存儲的資料並顯示
+    window.onload = function() {
+      const storedValue = localStorage.getItem('sharedData');
+      const display = document.getElementById('display');
+      if (storedValue) {
+        display.innerText = `當前存儲的值: ${storedValue}`;
+      } else {
+        display.innerText = 'localStorage 中沒有找到資料。';
+      }
+    };
+
+    // 儲存資料到 localStorage 並導航到 page2.html
+    function saveDataAndNavigate() {
+      const inputData = document.getElementById('inputData').value;
+      if (inputData) {
+        localStorage.setItem('sharedData', inputData);
+        alert('資料已儲存！');
+        window.location.href = 'page2.html';
+      } else {
+        alert('請輸入一些資料。');
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>頁面 1</h1>
+  <p id="display">正在載入資料...</p>
+  
+  <form onsubmit="event.preventDefault(); saveDataAndNavigate();">
+    <label for="inputData">輸入資料：</label>
+    <input type="text" id="inputData" name="inputData" required />
+    <button type="submit">儲存並前往頁面 2</button>
+  </form>
+</body>
+</html>

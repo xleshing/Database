@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: ycair/afaifaifai-frontend # 替換為你構建的前端 Docker 映像名稱
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: /usr/share/nginx/html
+          name: frontend-volume
+      volumes:
+      - name: frontend-volume
+        persistentVolumeClaim:
+          claimName: frontend-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: frontend
+

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>帳號登入與創建</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .container {
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+        input, label {
+            margin: 5px;
+            padding: 10px;
+        }
+        input[type="text"], input[type="password"], input[type="email"], input[type="number"] {
+            width: 200px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 登入介面 -->
+    <div id="login-container" class="container active">
+        <h2>登入</h2>
+        <input type="text" id="login-username" placeholder="帳號"><br>
+        <input type="password" id="login-password" placeholder="密碼"><br>
+        <input type="text" id="login-id" placeholder="會員身份證字號"><br>
+        <button onclick="login()">登入</button>
+        <p>沒有帳號？<a href="#" onclick="showCreateAccount()">創建帳號</a></p>
+    </div>
+
+    <!-- 創建帳號介面 -->
+    <div id="create-account-container" class="container">
+        <h2>創建帳號</h2>
+        <input type="text" id="create-username" placeholder="輸入帳號(必填)"><br>
+        <input type="password" id="create-password" placeholder="輸入密碼(必填)"><br>
+        <input type="text" id="create-id" placeholder="會員身份證字號(必填)" required><br>
+        <input type="text" id="create-name" placeholder="會員姓名(必填)"><br>
+        <input type="text" id="create-phone" placeholder="電話(選填)"><br>
+        <input type="text" id="create-mobile" placeholder="手機號碼(選填)"><br>
+        <input type="email" id="create-email" placeholder="Email(必填)"><br>
+        <input type="text" id="create-address" placeholder="住址(選填)"><br>
+        <input type="number" id="create-age" placeholder="年齡(選填)" min="0"><br>
+        <div>
+            <p>是否加入 Line(選填)：</p>
+            <label><input type="radio" name="line-opt-in" value="yes"> 是</label>
+            <label><input type="radio" name="line-opt-in" value="no"> 否</label>
+        </div>
+        <div>
+            <p>上傳照片(選填)：</p>
+            <input type="file" id="create-photo" accept="image/*">
+        </div>
+        <button onclick="createAccount()">創建</button>
+        <p>已經有帳號？<a href="#" onclick="showLogin()">返回登入</a></p>
+    </div>
+
+    <script>
+        // 切換顯示登入和創建帳號介面
+        function showLogin() {
+            document.getElementById('login-container').classList.add('active');
+            document.getElementById('create-account-container').classList.remove('active');
+        }
+
+        function showCreateAccount() {
+            document.getElementById('create-account-container').classList.add('active');
+            document.getElementById('login-container').classList.remove('active');
+        }
+
+        // 創建帳號功能
+        let accounts = {}; // 模擬帳號資料庫
+        function createAccount() {
+            const username = document.getElementById('create-username').value.trim();
+            const password = document.getElementById('create-password').value.trim();
+            const id = document.getElementById('create-id').value.trim();
+            const name = document.getElementById('create-name').value.trim();
+            const email = document.getElementById('create-email').value.trim();
+
+            // 檢查必填欄位
+            if (!username || !password || !id || !name || !email) {
+                alert('帳號、密碼、身份證字號、姓名和 Email 為必填欄位');
+                return;
+            }
+
+            // 檢查身份證字號格式
+            const idRegex = /^[A-Z][0-9]{9}$/; // 第一位為大寫英文字母，後九位為數字
+            if (!idRegex.test(id)) {
+                alert('身份證字號格式不正確，第一位必須是大寫英文字母，後九位為數字');
+                return;
+            }
+
+            if (accounts[username]) {
+                alert('帳號已存在');
+                return;
+            }
+
+            // 檢查是否選擇照片（選填時可省略此檢查）
+            const photo = document.getElementById('create-photo').files[0];
+            const reader = new FileReader();
+
+            reader.onload = function () {
+                // 儲存帳號資料
+                accounts[username] = {
+                    password,
+                    id,
+                    name,
+                    email,
+                    phone: document.getElementById('create-phone').value.trim(),
+                    mobile: document.getElementById('create-mobile').value.trim(),
+                    address: document.getElementById('create-address').value.trim(),
+                    age: document.getElementById('create-age').value.trim(),
+                    lineOptIn: document.querySelector('input[name="line-opt-in"]:checked')?.value || 'no', // 預設為 "否"
+                    photo: reader.result || null, // 選填，可能為空
+                };
+                alert('帳號創建成功，請返回登入');
+                showLogin();
+            };
+
+            if (photo) {
+                reader.readAsDataURL(photo);
+            } else {
+                reader.onload(); // 無照片時直接執行儲存
+            }
+        }
+
+        // 登入功能
+        function login() {
+            const username = document.getElementById('login-username').value.trim();
+            const password = document.getElementById('login-password').value.trim();
+            const id = document.getElementById('login-id').value.trim();
+
+            if (checkCredentials(username, password, id)) {
+                alert('登入成功');
+            } else {
+                alert('帳號、密碼或身份證字號錯誤');
+            }
+        }
+
+        // 檢查帳號密碼與身份證字號
+        function checkCredentials(username, password, id) {
+            return (
+                accounts[username] &&
+                accounts[username].password === password &&
+                accounts[username].id === id
+            );
+        }
+    </script>
+</body>
+</html>

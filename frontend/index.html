@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>東海水果公司管理系統</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- 側邊選單 -->
+  <div class="sidebar">
+    <h2>系統選單</h2>
+    <button onclick="loadData('fruits')">水果資料表</button>
+    <button onclick="loadData('members')">會員資料表</button>
+    <button onclick="loadData('inactive')">靜止會員資料表</button>
+    <button onclick="loadData('suppliers')">供應商資料表</button>
+    <button onclick="loadData('transactions')">交易資料表</button>
+  </div>
+
+  <!-- 內容區域 -->
+  <div class="content">
+    <!-- 水果資料表 -->
+    <div id="fruits" class="table-container hidden">
+      <h2>水果資料表</h2>
+      <div class="action-buttons">
+        <button class="operation-btn" onclick="openModal('fruits', 'add')">新增</button>
+        <button class="operation-btn" onclick="openModal('fruits', 'select')">查詢</button>
+        <button class="operation-btn" onclick="openModal('fruits', 'edit')">修改</button>
+        <button class="operation-btn" onclick="openModal('fruits', 'delete')">刪除</button>
+        <button class="print-btn" onclick="printTable('fruits')">列印</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>水果編號</th>
+            <th>水果名稱</th>
+            <th>水果供應商名稱</th>
+            <th>現有數量</th>
+            <th>單位</th>
+            <th>進貨單價</th>
+            <th>現有價值小計</th>
+            <th>公司內存放位置</th>
+            <th>進貨日期</th>
+            <th>開始促銷日期</th>
+            <th>該丟棄之日期</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- 會員資料表 -->
+    <div id="members" class="table-container hidden">
+      <h2>會員資料表</h2>
+      <div class="action-buttons">
+        <button class="operation-btn" onclick="openModal('members', 'add')">新增</button>
+        <button class="operation-btn" onclick="openModal('members', 'select')">查詢</button>
+        <button class="operation-btn" onclick="openModal('members', 'edit')">修改</button>
+        <button class="operation-btn" onclick="openModal('members', 'delete')">刪除</button>
+        <button class="print-btn" onclick="printTable('members')">列印</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>會員身分證字號</th>
+            <th>會員姓名</th>
+            <th>電話</th>
+            <th>手機號碼</th>
+            <th>Email</th>
+            <th>是否加入Line</th>
+            <th>住址</th>
+            <th>年齡</th>
+            <th>照片</th>
+            <th>會員折扣</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- 靜止會員資料表 -->
+    <div id="inactive" class="table-container hidden">
+      <h2>靜止會員資料表</h2>
+      <div class="action-buttons">
+        <!-- <button class="operation-btn" onclick="openModal('inactive', 'add')">新增</button> -->
+        <button class="operation-btn" onclick="openModal('inactive', 'select')">查詢</button>
+        <button class="operation-btn" onclick="openModal('inactive', 'edit')">修改</button>
+        <button class="operation-btn" onclick="openModal('inactive', 'delete')">移轉</button>
+        <button class="print-btn" onclick="printTable('inactive')">列印</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>會員身分證字號</th>
+            <th>會員姓名</th>
+            <th>電話</th>
+            <th>手機號碼</th>
+            <th>Email</th>
+            <th>是否加入Line</th>
+            <th>住址</th>
+            <th>年齡</th>
+            <th>照片</th>
+            <th>會員折扣</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- 供應商資料表 -->
+    <div id="suppliers" class="table-container hidden">
+      <h2>供應商資料表</h2>
+      <div class="action-buttons">
+        <button class="operation-btn" onclick="openModal('suppliers', 'add')">新增</button>
+        <button class="operation-btn" onclick="openModal('suppliers', 'select')">查詢</button>
+        <button class="operation-btn" onclick="openModal('suppliers', 'edit')">修改</button>
+        <button class="operation-btn" onclick="openModal('suppliers', 'delete')">刪除</button>
+        <button class="print-btn" onclick="printTable('suppliers')">列印</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>供應商統一編號</th>
+            <th>水果供應商名稱</th>
+            <th>電話</th>
+            <th>Email</th>
+            <th>住址</th>
+            <th>負責人姓名</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- 交易資料表 -->
+    <div id="transactions" class="table-container hidden">
+      <h2>交易資料表</h2>
+      <!-- 新增的顯示總金額區塊 -->
+      <div class="action-buttons" style="display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <button class="operation-btn" onclick="openModal('transactions', 'add')">新增</button>
+          <button class="operation-btn" onclick="openModal('transactions', 'select')">查詢</button>
+          <button class="operation-btn" onclick="openModal('transactions', 'edit')">修改</button>
+          <button class="operation-btn" onclick="openModal('transactions', 'delete')">刪除</button>
+          <button class="print-btn" onclick="printTable('transactions')">列印</button>
+          <button class="sort-btn" onclick="shipped_sort()">已出貨</button>
+          <button class="sort-btn" onclick="unshipped_sort()">未出貨</button>
+        </div>
+        <!-- 在右上角顯示總金額的區域 -->
+        <div class="transaction-total-container" style="font-weight:bold;">
+          <div class="transaction-item">
+            總金額：<span id="transaction-total">0</span>
+          </div>
+          <div class="transaction-item">
+            已出貨：<span id="transaction-shipped">0</span>
+          </div>
+          <div class="transaction-item">
+            未出貨：<span id="transaction-unshipped">0</span>
+          </div>
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>水果編號</th>
+            <th>會員身分證字號</th>
+            <th>水果名稱</th>
+            <th>水果供應商名稱</th>
+            <th>購買數量</th>
+            <th>出售單價</th>
+            <th>總金額</th>
+            <th>折扣後金額</th>
+            <th>交易日期</th>
+            <th>預計交運日期</th>
+            <th>實際交運日期</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 id="modal-title">操作</h2>
+      <form id="modal-form">
+        <!-- 動態生成表單 -->
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <!-- <script>
+    
+  </script> -->
+</body>
+</html>
